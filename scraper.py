@@ -28,7 +28,6 @@ pageLinks = soup.findAll('a')
 for pageLink in pageLinks:
 	href = pageLink['href']
 	if '/downloads/download/' in href:
-		print href
 	  	# add the right prefix onto the url
 	  	pageUrl = href.replace("/downloads","http://www.ealing.gov.uk/downloads")
 	  	html2 = urllib2.urlopen(pageUrl)
@@ -37,6 +36,7 @@ for pageLink in pageLinks:
 	  	links = linkBlock.findAll('a')
 	  	for link in links:
 		  	fileUrl = link['href']
+		  	print fileUrl
 		  	title = link.contents[0]
 			title = title.upper().strip()
 			if '2010/11' in title:
