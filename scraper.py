@@ -37,12 +37,15 @@ for pageLink in pageLinks:
 	  	for link in links:
 		  	fileUrl = link['href']
 		  	title = link.contents[0]
-			# create the right strings for the new filename
 			title = title.upper().strip()
-			csvYr = title.split(' ')[1]
-			csvMth = title.split(' ')[0][:3]
-			csvMth = convert_mth_strings(csvMth);
-	  		filename = entity_id + "_" + csvYr + "_" + csvMth
-	  		todays_date = str(datetime.now())
-	  		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
-	  		print filename
+			if '2010/11' in title:
+				print 'not single months'
+			else:
+				# create the right strings for the new filename
+				csvYr = title.split(' ')[1]
+				csvMth = title.split(' ')[0][:3]
+				csvMth = convert_mth_strings(csvMth);
+		  		filename = entity_id + "_" + csvYr + "_" + csvMth
+		  		todays_date = str(datetime.now())
+		  		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
+		  		print filename
