@@ -23,7 +23,7 @@ html = urllib2.urlopen(url)
 soup = BeautifulSoup(html)
 
 # find all entries with the required class
-pageLinks = soup.findAll('a')
+pageLinks = soup.findAll('a', href=True)
 
 for pageLink in pageLinks:
 	href = pageLink['href']
