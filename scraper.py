@@ -27,6 +27,7 @@ pageLinks = soup.findAll('a')
 
 for pageLink in pageLinks:
 	href = pageLink['href']
+	print href
 	if '/downloads/download/' in href:
 	  	# add the right prefix onto the url
 	  	pageUrl = href.replace("/downloads","http://www.ealing.gov.uk/downloads")
