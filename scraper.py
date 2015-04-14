@@ -36,7 +36,7 @@ for pageLink in pageLinks:
 	  	links = linkBlock.findAll('a')
 	  	for link in links:
 		  	fileUrl = link['href']
-		  	title = fileUrl.contents[0]
+		  	title = link.contents[0]
 			# create the right strings for the new filename
 			title = title.upper().strip()
 			csvYr = title.split(' ')[1]
