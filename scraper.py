@@ -26,24 +26,23 @@ soup = BeautifulSoup(html)
 pageLinks = soup.findAll('a')
 
 for pageLink in pageLinks:
-  href = pageLink['href']
-  if '/downloads/download/' in href:
-  	# add the right prefix onto the url
-  	pageUrl = href.replace("/downloads","http://www.ealing.gov.uk/downloads")
-  	html2 = urllib2.urlopen(pageUrl)
-  	soup2 = BeautifulSoup(html2)
-  	
-  	linkBlock = soup2.find('ul',{'class':'list'})
-  	links = linkBlock.findAll('a')
-  	for link in links:
-	  	fileUrl = link['href']
-	  	title = fileBlock.contents[0]
-		  # create the right strings for the new filename
-		  title = title.upper().strip()
-		  csvYr = title.split(' ')[1]
-		  csvMth = title.split(' ')[0][:3]
-		  csvMth = convert_mth_strings(csvMth);
-  		filename = entity_id + "_" + csvYr + "_" + csvMth
-  		todays_date = str(datetime.now())
-  		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
-  		print filename
+	href = pageLink['href']
+	if '/downloads/download/' in href:
+	  	# add the right prefix onto the url
+	  	pageUrl = href.replace("/downloads","http://www.ealing.gov.uk/downloads")
+	  	html2 = urllib2.urlopen(pageUrl)
+	  	soup2 = BeautifulSoup(html2)
+	  	linkBlock = soup2.find('ul',{'class':'list'})
+	  	links = linkBlock.findAll('a')
+	  	for link in links:
+		  	fileUrl = link['href']
+		  	title = fileBlock.contents[0]
+			# create the right strings for the new filename
+			title = title.upper().strip()
+			csvYr = title.split(' ')[1]
+			csvMth = title.split(' ')[0][:3]
+			csvMth = convert_mth_strings(csvMth);
+	  		filename = entity_id + "_" + csvYr + "_" + csvMth
+	  		todays_date = str(datetime.now())
+	  		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
+	  		print filename
