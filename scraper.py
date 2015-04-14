@@ -36,7 +36,6 @@ for pageLink in pageLinks:
 	  	links = linkBlock.findAll('a')
 	  	for link in links:
 		  	fileUrl = link['href']
-		  	print fileUrl
 		  	title = link.contents[0]
 			title = title.upper().strip()
 			if '2010/11' in title:
